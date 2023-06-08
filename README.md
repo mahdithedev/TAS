@@ -1,0 +1,1 @@
+The Telegram AD service wants to help channels admins advertise their community fairly and with ease in Telegram by pushing their ads to the biggest channels in the platform and keeping track of click count So they don't have to waiste their money
