@@ -1,0 +1,1 @@
+INSERT INTO URLS (Original , ShortVersion, ClickCount) VALUES ($original , $shortversion , $clickcount)
