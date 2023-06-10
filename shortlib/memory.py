@@ -8,11 +8,16 @@ class MemoryRepo(Repository):
         super().__init__(address)
         self.store = dict()
 
-    def save(self, url, value):
+    def create(self, url, value):
         self.store[value] = (url , value , 0)
 
-    def get(self, url):
+    def read(self, url):
+        if url not in self.store:
+            raise Exception("No origin with key {url} exists")
         return self.store[url]
+    
+    def update(self):
+        return super().update()
     
     def delete(self, url):
         return super().delete(url)

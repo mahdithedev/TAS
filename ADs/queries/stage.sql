@@ -1,5 +1,5 @@
 CREATE TABLE Stage (
-    URL NOT NULL TEXT PRIMARY KEY,
+    URL TEXT NOT NULL PRIMARY KEY,
     News int DEFAULT 0,
     Fun int DEFAULT 0,
     SocialMedia int DEFAULT 0,
@@ -8,5 +8,5 @@ CREATE TABLE Stage (
     Services int DEFAULT 0,
     Shop int DEFAULT 0,
     Community int DEFAULT 0,
-    Education int DEFAULT 0,
+    Education int DEFAULT 0
 );

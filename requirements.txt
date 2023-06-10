@@ -3,3 +3,4 @@ python-telegram-bot[ext]
 python-dotenv
 Flask
 psycopg2
+numpy

@@ -1,18 +1,23 @@
-# abstract class for storage repository responsible for storing URLS and their short versions
+from common.repository import Repository
 
-class Repository():
+# abstract class for storage repository responsible for storing URLS and their short versions
+# shortlib repository
+class ShortRepository(Repository):
 
     def __init__(self , address) -> None:
         self.address = address
 
-    def save(self , url , value):
+    def create(self , url , value):
+        pass
+
+    def read(self , url):
         pass
 
     def click(self):
         pass
 
-    def get(self , url):
-        pass
+    def update(self):
+        return super().update()
 
     def delete(self , url):
         pass

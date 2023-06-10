@@ -1,1 +1,1 @@
-This library is part of the TAS i.e., The Telegram AD service used for managing shorted URLS 
+This module is part of the TAS i.e., The Telegram AD service used for managing shorted URLS 
