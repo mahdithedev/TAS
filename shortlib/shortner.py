@@ -1,5 +1,5 @@
 import random
-from shortlib.repository import Repository
+from shortlib.repository import ShortRepository
 from shortlib.memory import MemoryRepo
 from shortlib.postgres import PostgresRepo
 from shortlib.redis import RedisCacheRepository
@@ -26,14 +26,14 @@ def random_id():
 
 class Shortner():
     
-    def __init__(self , repository: Repository , base) -> None:
+    def __init__(self , repository: ShortRepository , base) -> None:
         self.repository = repository
         # the final url will be base + new
         self.base = base
 
-    def shorten(self , url):
+    def shorten(self , url , owner_ID , owner_channel , lifetime):
         new_url = random_id()
-        self.repository.save(url , new_url)
+        self.repository.create(url , new_url , owner_ID , owner_channel , lifetime)
         return new_url
     
     def get(self , url):

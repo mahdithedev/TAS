@@ -7,7 +7,7 @@ class ShortRepository(Repository):
     def __init__(self , address) -> None:
         self.address = address
 
-    def create(self , url , value):
+    def create(self , url , new , owner_iD , owner_channel , lifetime):
         pass
 
     def read(self , url):

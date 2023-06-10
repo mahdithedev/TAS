@@ -1,2 +1,1 @@
-import stage
-import pool
+from ADs.stage import Stage

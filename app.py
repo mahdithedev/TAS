@@ -14,10 +14,13 @@ shortner = Shortner(PostgresRepo(conn=conn), "http://127.0.0.1:5000")
 
 app = Flask(__name__)
 
-@app.route("/shorten" , methods=["POST"])
+@app.route("/add" , methods=["POST"])
 def shorten():
     original = request.json["url"]
-    new = shortner.shorten(original)
+    owner_ID = int(request.json["owner"])
+    owner_channel = request.json["channel"]
+    lifetime = 3 * 24 * 60 * 60 * 1000
+    new = shortner.shorten(original , owner_ID , owner_channel , lifetime)
     return {"new":new , "full_url":f"{shortner.base}/{new}"}
 
 @app.route("/<url>")
