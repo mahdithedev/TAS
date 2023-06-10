@@ -1,5 +1,5 @@
 from shortlib.repository import Repository
-
+from datetime import date
 # Implmentation of Repository for memory (Do not use for production)
 
 class MemoryRepo(Repository):
@@ -8,8 +8,8 @@ class MemoryRepo(Repository):
         super().__init__(address)
         self.store = dict()
 
-    def create(self, url, value):
-        self.store[value] = (url , value , 0)
+    def create(self , url , new , owner_iD , owner_channel , lifetime):
+        self.store[new] = (url , new , 0 , owner_iD , owner_channel , lifetime , date.today())
 
     def read(self, url):
         if url not in self.store:

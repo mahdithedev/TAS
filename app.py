@@ -1,5 +1,5 @@
 from shortlib.shortner import Shortner,MemoryRepo,RedisCacheRepository,PostgresRepo
-from ADs import Stage
+from stage import Stage
 from flask import Flask,abort,redirect,request
 import numpy as np
 import psycopg2
@@ -27,13 +27,13 @@ def shorten():
 def get(url):
     return redirect(shortner.get(url)[0])
 
-# this route is temporarily. Stage functionality will be transfer to bot.py later
+# this route is temporarily. Stage functionality will be transfered to bot.py later
 @app.route("/temp" , methods=["POST"])
 def add():
     stage.create(request.json["url"] , request.json["eval"])
     return {"ok":True}
 
-# this route is temporarily. Stage functionality will be transfer to bot.py later
+# this route is temporarily. Stage functionality will be transfered to bot.py later
 @app.route("/recommend")
 def score():
     stage_urls , result = stage.score(np.array([0 , 10] + [0] * 7))
