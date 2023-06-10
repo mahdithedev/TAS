@@ -1,5 +1,6 @@
 import psycopg2
 from shortlib.repository import Repository
+from datetime import date
 
 # Implmentation of Repository for postgres
 
@@ -15,10 +16,11 @@ class PostgresRepo(Repository):
         self.conn.autocommit = True
         self.cur = self.conn.cursor()
 
-    def create(self, url, new):
-        query = f"""INSERT INTO URLS (New , Original) 
-        VALUES (%s , %s);"""
-        self.cur.execute(query , (new , url))
+    def create(self , url , new , owner_ID , owner_channel , lifetime):
+        query = f"""INSERT INTO URLS (New , Original , OwnerID , OwnerChannel , Lifetime , CreatedAt) 
+        VALUES (%s , %s , %s , %s , %s , %s);"""
+        today = date.today()
+        self.cur.execute(query , (new, url, owner_ID, owner_channel , lifetime , today))
 
     def read(self , url):
         query = f"SELECT * FROM URLS WHERE new=\'{url}\'"
