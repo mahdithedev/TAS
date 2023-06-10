@@ -37,7 +37,7 @@ class Shortner():
         return new_url
     
     def get(self , url):
-        return self.repository.get(url)
+        return self.repository.read(url)
     
     def click(self , url):
         return self.repository.click(url)
