@@ -1,4 +1,4 @@
-from shortlib.shortner import Shortner,MemoryRepo,RedisCacheRepository,PostgresRepo
+from shortlib.shortner import Shortner,MemoryRepo,PostgresRepo
 from stage import Stage
 from flask import Flask,abort,redirect,request
 import numpy as np
@@ -25,7 +25,9 @@ def shorten():
 
 @app.route("/<url>")
 def get(url):
-    return redirect(shortner.get(url)[0])
+    IP = request.remote_addr
+    user_agent = request.headers.get('User-Agent')
+    return redirect(shortner.get_click(url , IP , user_agent)[0])
 
 # this route is temporarily. Stage functionality will be transfered to bot.py later
 @app.route("/temp" , methods=["POST"])
