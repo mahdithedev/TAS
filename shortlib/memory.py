@@ -1,15 +1,17 @@
-from shortlib.repository import Repository
+from shortlib.repository import ShortRepository
 from datetime import date
+import time
 # Implmentation of Repository for memory (Do not use for production)
 
-class MemoryRepo(Repository):
+class MemoryRepo(ShortRepository):
 
     def __init__(self, address) -> None:
         super().__init__(address)
         self.store = dict()
+        self.click_store = dict()
 
     def create(self , url , new , owner_iD , owner_channel , lifetime):
-        self.store[new] = (url , new , 0 , owner_iD , owner_channel , lifetime , date.today())
+        self.store[new] = (url , new , owner_iD , owner_channel , lifetime , date.today())
 
     def read(self, url):
         if url not in self.store:
@@ -22,6 +24,8 @@ class MemoryRepo(Repository):
     def delete(self, url):
         return super().delete(url)
     
-    def click(self , url):
-        (original , new , click_count) = self.store[url]
-        self.store[url] = (original , new , click_count+1)
+    def click(self, url, IP, user_agent):
+        if self.click_store[url+IP]:
+            return False
+        self.click_store[url+IP] = (user_agent , time.time())
+        return True

@@ -2,7 +2,6 @@ import random
 from shortlib.repository import ShortRepository
 from shortlib.memory import MemoryRepo
 from shortlib.postgres import PostgresRepo
-from shortlib.redis import RedisCacheRepository
 
 # generate a random 8 character string
 # we can safely use this function if we have less than 1 million urls stored but after that
@@ -39,5 +38,8 @@ class Shortner():
     def get(self , url):
         return self.repository.read(url)
     
-    def click(self , url):
-        return self.repository.click(url)
+    def click(self , url , IP , user_agent):
+        return self.repository.click(url , IP , user_agent)
+    
+    def get_click(self , url , IP , user_agent):
+        return self.repository.read_and_click(url , IP , user_agent)
